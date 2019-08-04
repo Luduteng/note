@@ -56,7 +56,7 @@
 - context 对象 属性
  1. props 属性对象
  2. slots().default 分发
- 不能定义方法属性
+ 不能定义方法属性 没有计算属性和watch
 ```javascript
     export default {
         functional: true,
@@ -65,3 +65,5 @@
         }
     }
 ```
+
+### 日历组件封装
