@@ -1,4 +1,4 @@
-# vuex-resource
+# vuex-source
 
 ## Project setup
 ```

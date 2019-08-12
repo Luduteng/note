@@ -72,8 +72,39 @@ export default {
 
 
 - `<template v-slot:xxx='{a, item}'> </template> `xxx 是名字 通过`<slot name='xxx'></slot>`获取到分发的内容
-
-- jwt 认证
+ 
+- jwt 认证 json web token
+- token 验证
+- axios 请求拦截
+> 1. 登录 返回token  
+> 2. 进入页面的时候校验是否登录
+> 3. 没有登录则跳转登录
+> 4. 登陆过如果刷新页面要刷新token
+> 5. meta 鉴权 to.matched 匹配的路由数组
+> 6. 白名单 whiteList.includes 直接next
+```javascript 
+class Request{
+    constructor() {
+        this.baseUrl =  process.env.NODE_ENV === 'production' ? 'localhose:3000': '/';
+        this.timeout = 2000;
+    }
+    request(config) {
+        const instance = axios.create({
+            baseUrl: this.baseUrl,
+            timeout: this.timeout
+        });
+        // 两个拦截器都会走 
+        instance.interceptors.request.use((config) => {
+            return config
+        })
+        instance.interceptors.request.use((config) => {
+            return config
+        })
+        return instance(config)
+    }
+}
+export default new Request()
+```
 
 
 
